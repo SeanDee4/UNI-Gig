@@ -97,12 +97,17 @@ export default function BrowseGigs() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-card rounded-[10px] border border-border p-6 sticky top-24">
-                <div className="flex items-center gap-2 mb-6">
-                  <Filter className="w-5 h-5 text-primary" />
-                  <h3 className="text-lg font-semibold text-foreground">
-                    Filters
-                  </h3>
+              <div className="bg-card rounded-[12px] border border-border p-6 sticky top-24 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(13,79,92,0.10)]">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center">
+                      <Filter className="w-4 h-4 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">Filters</h3>
+                  </div>
+                  <span className="text-xs font-semibold text-primary bg-primary/8 px-2 py-1 rounded-full">
+                    {filteredGigs.length}
+                  </span>
                 </div>
 
                 {/* Search */}

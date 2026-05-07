@@ -72,18 +72,29 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
-                  className="text-foreground hover:bg-secondary gap-2"
+                  className="group text-muted-foreground hover:bg-red-50 hover:text-red-600 rounded-[8px] gap-2 px-3 transition-colors"
                   title="Log out"
                 >
-                  <LogOut className="w-4 h-4" />
-                  Log out
+                  <LogOut className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  <span className="hidden lg:inline">Log out</span>
                 </Button>
-                <div
-                  className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold"
-                  title={user?.name ?? ''}
+                <Link
+                  href="/profile"
+                  title={`${user?.name ?? ''} — view profile`}
+                  className="group"
                 >
-                  {initial}
-                </div>
+                  {user?.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-card shadow-sm transition-all group-hover:ring-primary group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-[#083843] flex items-center justify-center text-white font-semibold shadow-sm ring-2 ring-card transition-all group-hover:ring-primary group-hover:scale-105">
+                      {initial}
+                    </div>
+                  )}
+                </Link>
               </>
             ) : (
               <>
@@ -134,18 +145,26 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
             </Link>
             {isLoggedIn ? (
               <>
+                <Link href="/profile" className="block py-2">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-foreground hover:bg-secondary gap-2"
+                  >
+                    Profile ({user?.name})
+                  </Button>
+                </Link>
                 <Link href="/dashboard" className="block py-2">
                   <Button
                     variant="ghost"
                     className="w-full justify-start text-foreground hover:bg-secondary"
                   >
-                    Dashboard ({user?.name})
+                    Dashboard
                   </Button>
                 </Link>
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
-                  className="w-full justify-start text-foreground hover:bg-secondary gap-2"
+                  className="w-full justify-start text-red-600 hover:bg-red-50 gap-2"
                 >
                   <LogOut className="w-4 h-4" />
                   Log out

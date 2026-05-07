@@ -137,7 +137,7 @@ export default function Dashboard() {
           </div>
 
           {/* Tabs */}
-          <div className="bg-card border-b border-border rounded-t-[10px] flex items-center gap-8 px-6 overflow-x-auto">
+          <div className="bg-card border border-border rounded-t-[12px] flex items-center gap-2 p-2 overflow-x-auto shadow-[0_1px_3px_rgba(15,23,42,0.04)]">
             <TabButton active={activeTab === 'gigs'} onClick={() => setActiveTab('gigs')}>
               My Gigs
             </TabButton>
@@ -153,7 +153,7 @@ export default function Dashboard() {
           </div>
 
           {/* Tab Content */}
-          <div className="bg-card rounded-b-[10px] border border-t-0 border-border p-6">
+          <div className="bg-card rounded-b-[12px] border border-t-0 border-border p-6 shadow-[0_4px_12px_-8px_rgba(15,23,42,0.05)]">
             {activeTab === 'gigs' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -322,8 +322,10 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors whitespace-nowrap ${
-        active ? 'text-primary border-primary' : 'text-muted-foreground border-transparent hover:text-foreground'
+      className={`py-2.5 px-4 font-medium text-sm rounded-[8px] transition-all whitespace-nowrap ${
+        active
+          ? 'bg-primary text-white shadow-[0_4px_12px_-4px_rgba(13,79,92,0.4)]'
+          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
       }`}
     >
       {children}

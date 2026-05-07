@@ -102,6 +102,34 @@ export function createUser(input: {
   return { ok: true, user }
 }
 
+export function updateUser(
+  id: string,
+  patch: Partial<Pick<User, 'name' | 'campus' | 'avatar' | 'password'>>,
+): User | null {
+  const users = getUsers()
+  const idx = users.findIndex((u) => u.id === id)
+  if (idx === -1) return null
+  const updated: User = { ...users[idx], ...patch }
+  users[idx] = updated
+  write(KEYS.users, users)
+
+  // Mirror name/avatar onto any gigs this user owns so cards stay in sync
+  const gigs = getGigs()
+  let touched = false
+  const nextGigs = gigs.map((g) => {
+    if (g.ownerId !== id) return g
+    touched = true
+    return {
+      ...g,
+      posterName: patch.name ?? g.posterName,
+      posterAvatar: patch.avatar ?? g.posterAvatar,
+    }
+  })
+  if (touched) write(KEYS.gigs, nextGigs)
+
+  return updated
+}
+
 export function verifyLogin(email: string, password: string): User | null {
   const e = email.trim().toLowerCase()
   const user = getUsers().find((u) => u.email === e && u.password === password)

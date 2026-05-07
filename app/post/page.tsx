@@ -312,23 +312,25 @@ export default function PostGig() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex gap-4">
-                  <Button
-                    type="submit"
-                    disabled={!isFormValid}
-                    className="flex-1 bg-primary text-white hover:bg-[#083843] rounded-[8px] py-6 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Post Gig
-                  </Button>
-                  <Link href="/" className="flex-1">
+                <div className="bg-card rounded-[12px] border border-border p-4 shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)] sticky bottom-4">
+                  <div className="flex items-center gap-3">
+                    <Link href="/" className="flex-shrink-0">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="border-border text-foreground hover:bg-secondary rounded-[8px] py-5 px-6"
+                      >
+                        Cancel
+                      </Button>
+                    </Link>
                     <Button
-                      type="button"
-                      variant="outline"
-                      className="w-full border-border text-foreground hover:bg-secondary rounded-[8px] py-6 text-base font-medium"
+                      type="submit"
+                      disabled={!isFormValid}
+                      className="btn-sheen flex-1 bg-primary text-white hover:bg-[#083843] rounded-[8px] py-5 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_24px_-12px_rgba(13,79,92,0.5)]"
                     >
-                      Cancel
+                      {isFormValid ? 'Post Gig' : 'Fill all required fields'}
                     </Button>
-                  </Link>
+                  </div>
                 </div>
               </form>
             </div>

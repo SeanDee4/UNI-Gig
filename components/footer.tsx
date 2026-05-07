@@ -98,12 +98,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="border-t border-border pt-6 text-center">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} UNI-Gig. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            NCC Education Level 5 Computing Project
           </p>
         </div>
       </div>
