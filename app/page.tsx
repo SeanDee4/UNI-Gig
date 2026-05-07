@@ -39,7 +39,7 @@ export default function Home() {
       posterAvatar: 'https://i.pravatar.cc/150?img=1',
       rating: 4.9,
       reviews: 23,
-      campus: 'UNZA',
+      campus: 'ZCAS',
     },
     {
       id: '2',
@@ -51,7 +51,7 @@ export default function Home() {
       posterAvatar: 'https://i.pravatar.cc/150?img=2',
       rating: 4.8,
       reviews: 18,
-      campus: 'Copperbelt University',
+      campus: 'ZCAS',
     },
     {
       id: '3',
@@ -63,7 +63,7 @@ export default function Home() {
       posterAvatar: 'https://i.pravatar.cc/150?img=3',
       rating: 5.0,
       reviews: 31,
-      campus: 'UNZA',
+      campus: 'ZCAS',
     },
     {
       id: '4',
@@ -108,8 +108,8 @@ export default function Home() {
             Find help. Offer skills. All on campus.
           </h1>
           <p className="text-lg text-muted-foreground mb-8 text-balance max-w-2xl mx-auto">
-            UNI-Gig is your campus marketplace for student services. Whether you need tutoring,
-            typing, design work, or errands done—we connect you with skilled students ready to help.
+            UNI-Gig is the student services marketplace built for ZCAS and other Zambian campuses.
+            Tutoring, typing, design work, errands — connect with skilled students ready to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/browse">

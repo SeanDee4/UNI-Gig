@@ -1,6 +1,6 @@
 # UNI-Gig
 
-A student-to-student service marketplace for Zambian university campuses (UNZA, Copperbelt, Mulungushi, ZAOU). Students post gigs (tutoring, typing, hair, design, errands, laundry) and other students browse and book them.
+A student-to-student service marketplace built for **ZCAS** students, with support for other Zambian campuses (UNZA, Copperbelt, Mulungushi, ZAOU). Students post gigs (tutoring, typing, hair, design, errands, laundry) and other students browse and book them.
 
 Built as the computing artefact for **NCC Education Level 5 Computing Project**.
 

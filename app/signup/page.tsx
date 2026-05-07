@@ -31,10 +31,11 @@ export default function Signup() {
   const router = useRouter()
 
   const campuses = [
-    'University of Zambia (UNZA)',
+    'ZCAS',
+    'UNZA',
     'Copperbelt University',
     'Mulungushi University',
-    'Zambia Open University (ZAOU)',
+    'ZAOU',
     'Other',
   ]
 
