@@ -74,7 +74,7 @@ export default function Dashboard() {
       <>
         <Navbar />
         <main className="bg-background min-h-screen flex items-center justify-center">
-          <p className="text-muted-foreground">Loading your dashboard…</p>
+          <p className="text-muted-foreground pulse-soft">Loading your dashboard…</p>
         </main>
         <Footer />
       </>

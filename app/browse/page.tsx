@@ -206,8 +206,14 @@ export default function BrowseGigs() {
               {paginatedGigs.length > 0 ? (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    {paginatedGigs.map((gig) => (
-                      <GigCard key={gig.id} {...gig} />
+                    {paginatedGigs.map((gig, idx) => (
+                      <div
+                        key={gig.id}
+                        className="fade-in-up"
+                        style={{ animationDelay: `${Math.min(idx * 40, 320)}ms` }}
+                      >
+                        <GigCard {...gig} />
+                      </div>
                     ))}
                   </div>
 

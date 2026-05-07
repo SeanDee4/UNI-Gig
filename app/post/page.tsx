@@ -120,7 +120,7 @@ export default function PostGig() {
       <>
         <Navbar />
         <main className="bg-background min-h-screen flex items-center justify-center">
-          <p className="text-muted-foreground">Checking your session…</p>
+          <p className="text-muted-foreground pulse-soft">Checking your session…</p>
         </main>
         <Footer />
       </>

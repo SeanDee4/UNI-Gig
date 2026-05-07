@@ -36,7 +36,7 @@ export default function GigDetail() {
       <>
         <Navbar />
         <main className="bg-background min-h-screen flex items-center justify-center">
-          <p className="text-muted-foreground">Loading…</p>
+          <p className="text-muted-foreground pulse-soft">Loading…</p>
         </main>
         <Footer />
       </>
