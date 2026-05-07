@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/password-input'
 import {
   Select,
   SelectContent,
@@ -226,8 +227,7 @@ export default function Signup() {
                     <label className="block text-sm font-semibold text-foreground mb-2">
                       Password
                     </label>
-                    <Input
-                      type="password"
+                    <PasswordInput
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
@@ -242,8 +242,7 @@ export default function Signup() {
                     <label className="block text-sm font-semibold text-foreground mb-2">
                       Confirm Password
                     </label>
-                    <Input
-                      type="password"
+                    <PasswordInput
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
