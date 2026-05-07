@@ -286,7 +286,7 @@ function StatCard({
     yellow: 'bg-yellow-50 text-yellow-600',
   }[tint]
   return (
-    <div className="bg-card rounded-[10px] border border-border p-6">
+    <div className="depth-card rounded-[10px] border border-border p-6">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground mb-1">{label}</p>

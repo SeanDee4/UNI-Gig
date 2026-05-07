@@ -28,7 +28,7 @@ export function GigCard({
 }: GigCardProps) {
   return (
     <Link href={`/gig/${id}`}>
-      <div className="bg-card rounded-[10px] border border-border p-4 hover:shadow-lg hover:-translate-y-0.5 hover:border-primary/40 transition-all duration-200 cursor-pointer h-full flex flex-col">
+      <div className="tilt-card bg-card rounded-[10px] border border-border p-4 hover:border-primary/40 cursor-pointer h-full flex flex-col">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
             <h3 className="text-base font-semibold text-foreground line-clamp-2">

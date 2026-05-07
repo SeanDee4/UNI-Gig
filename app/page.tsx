@@ -102,8 +102,9 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-background py-12 md:py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center fade-in-up">
+      <section className="relative bg-background py-12 md:py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 glow-radial pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto text-center fade-in-up">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
             Find help. Offer skills. All on campus.
           </h1>
@@ -226,8 +227,15 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary text-white py-12 md:py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative bg-primary text-white py-12 md:py-16 px-4 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-60"
+          style={{
+            background:
+              'radial-gradient(60% 60% at 50% 0%, rgba(255,255,255,0.18) 0%, transparent 65%), radial-gradient(40% 40% at 100% 100%, rgba(255,255,255,0.10) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to get started?
           </h2>

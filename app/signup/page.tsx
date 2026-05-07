@@ -107,7 +107,7 @@ export default function Signup() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Left Side - Branding */}
             <div className="hidden md:flex flex-col justify-center">
-              <div className="bg-primary rounded-[16px] p-12 text-white">
+              <div className="bg-primary rounded-[16px] p-12 text-white shadow-[0_30px_60px_-30px_rgba(13,79,92,0.45)]">
                 <div className="text-4xl font-bold mb-4">
                   <span className="text-white">UNI</span>
                   <span className="text-white">-Gig</span>

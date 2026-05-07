@@ -16,7 +16,7 @@ export function CategoryCard({
 }: CategoryCardProps) {
   return (
     <Link href={href}>
-      <div className="group bg-card rounded-[10px] border border-border p-6 text-center hover:border-primary hover:bg-secondary hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col items-center gap-3">
+      <div className="tilt-card group bg-card rounded-[10px] border border-border p-6 text-center hover:border-primary cursor-pointer flex flex-col items-center gap-3">
         <Icon className="w-8 h-8 text-primary transition-transform duration-200 group-hover:scale-110" />
         <div>
           <h3 className="font-semibold text-foreground text-sm">{name}</h3>

@@ -30,7 +30,7 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
   }
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-40">
+    <nav className="glass border-b border-border sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
