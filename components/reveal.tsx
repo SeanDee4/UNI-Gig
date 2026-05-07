@@ -7,13 +7,22 @@ interface RevealProps {
   delay?: number
   className?: string
   as?: 'div' | 'section' | 'article'
+  /** Set to true to animate only the first time the element enters view (default: false) */
+  once?: boolean
 }
 
 /**
- * Reveals its children with a fade-up when scrolled into view.
+ * Fades + slides its children up into view whenever they enter the viewport.
+ * By default re-fires on every entry/exit so scrolling up and down both animate.
  * Honours prefers-reduced-motion.
  */
-export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  className = '',
+  as: Tag = 'div',
+  once = false,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -32,25 +41,29 @@ export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }:
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setVisible(true)
-            obs.disconnect()
-            break
+            if (once) {
+              obs.disconnect()
+              return
+            }
+          } else if (!once) {
+            setVisible(false)
           }
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     )
     obs.observe(el)
     return () => obs.disconnect()
-  }, [])
+  }, [once])
 
   const Cmp = Tag as React.ElementType
   return (
     <Cmp
       ref={ref as never}
       style={{
-        transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        transform: visible ? 'translateY(0)' : 'translateY(18px)',
         opacity: visible ? 1 : 0,
-        transition: `opacity 600ms ease-out ${delay}ms, transform 600ms ease-out ${delay}ms`,
+        transition: `opacity 520ms cubic-bezier(0.2, 0.8, 0.2, 1) ${delay}ms, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1) ${delay}ms`,
       }}
       className={className}
     >

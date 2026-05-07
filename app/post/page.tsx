@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/select'
 import { AlertCircle, CheckCircle } from 'lucide-react'
 import { createGig, getCurrentUser, type User } from '@/lib/storage'
+import { Reveal } from '@/components/reveal'
 
 export default function PostGig() {
   const router = useRouter()
@@ -133,8 +134,9 @@ export default function PostGig() {
 
       <main className="bg-background min-h-screen">
         {/* Page Header */}
-        <section className="bg-card border-b border-border py-8 px-4">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative bg-card border-b border-border py-10 px-4 overflow-hidden">
+          <div className="absolute inset-0 glow-radial pointer-events-none" />
+          <div className="relative max-w-3xl mx-auto fade-in-up">
             <Link
               href="/"
               className="text-primary hover:text-[#083843] font-medium text-sm mb-4 inline-block"
@@ -162,7 +164,7 @@ export default function PostGig() {
               )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Gig Title */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Gig Title <span className="text-red-500">*</span>
                   </label>
@@ -181,7 +183,7 @@ export default function PostGig() {
                 </div>
 
                 {/* Category */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Category <span className="text-red-500">*</span>
                   </label>
@@ -203,7 +205,7 @@ export default function PostGig() {
                 </div>
 
                 {/* Description */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Description <span className="text-red-500">*</span>
                   </label>
@@ -222,7 +224,7 @@ export default function PostGig() {
                 </div>
 
                 {/* Price */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Price (Kwacha) <span className="text-red-500">*</span>
                   </label>
@@ -248,7 +250,7 @@ export default function PostGig() {
                 </div>
 
                 {/* Contact Method */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-3">
                     How should students contact you?{' '}
                     <span className="text-red-500">*</span>
@@ -286,7 +288,7 @@ export default function PostGig() {
                 </div>
 
                 {/* Contact Info */}
-                <div className="bg-card rounded-[10px] border border-border p-6">
+                <div className="bg-card rounded-[12px] border border-border p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_4px_12px_-4px_rgba(13,79,92,0.12)]">
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Your {formData.contactMethod === 'phone' ? 'Phone Number' : 'Email'}{' '}
                     <span className="text-red-500">*</span>

@@ -16,6 +16,7 @@ import {
   type Gig,
   type User,
 } from '@/lib/storage'
+import { Reveal } from '@/components/reveal'
 
 export default function GigDetail() {
   const params = useParams<{ id: string }>()
@@ -108,7 +109,8 @@ export default function GigDetail() {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* Header */}
-              <div className="bg-card rounded-[10px] border border-border p-6 md:p-8 mb-6">
+              <Reveal as="div" delay={0}>
+              <div className="bg-card rounded-[12px] border border-border p-6 md:p-8 mb-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_24px_-8px_rgba(15,23,42,0.06)]">
                 <div className="mb-4">
                   <span className="inline-block px-3 py-1 bg-secondary text-primary text-xs font-medium rounded-[6px]">
                     {gig.category}
@@ -126,9 +128,11 @@ export default function GigDetail() {
                   </div>
                 </div>
               </div>
+              </Reveal>
 
               {/* Description */}
-              <div className="bg-card rounded-[10px] border border-border p-6 md:p-8 mb-6">
+              <Reveal as="div" delay={80}>
+              <div className="bg-card rounded-[12px] border border-border p-6 md:p-8 mb-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_24px_-8px_rgba(15,23,42,0.06)]">
                 <h2 className="text-xl font-semibold text-foreground mb-4">
                   About This Gig
                 </h2>
@@ -153,9 +157,11 @@ export default function GigDetail() {
                   </div>
                 </div>
               </div>
+              </Reveal>
 
               {/* Reviews Section */}
-              <div className="bg-card rounded-[10px] border border-border p-6 md:p-8 mb-6">
+              <Reveal as="div" delay={160}>
+              <div className="bg-card rounded-[12px] border border-border p-6 md:p-8 mb-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_24px_-8px_rgba(15,23,42,0.06)]">
                 <h2 className="text-xl font-semibold text-foreground mb-6">
                   Reviews ({gig.reviews})
                 </h2>
@@ -169,12 +175,13 @@ export default function GigDetail() {
                   </p>
                 )}
               </div>
+              </Reveal>
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Poster Info Card */}
-              <div className="bg-card rounded-[10px] border border-border p-6 sticky top-24 mb-6">
+              <div className="bg-card rounded-[12px] border border-border p-6 sticky top-24 mb-6 shadow-[0_4px_12px_-4px_rgba(13,79,92,0.10),0_20px_40px_-20px_rgba(13,79,92,0.18)]">
                 <h3 className="text-lg font-semibold text-foreground mb-6">
                   About the Student
                 </h3>

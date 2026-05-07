@@ -17,6 +17,7 @@ import {
 import { Slider } from '@/components/ui/slider'
 import { Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getGigs, type Gig } from '@/lib/storage'
+import { Reveal } from '@/components/reveal'
 
 export default function BrowseGigs() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -77,13 +78,17 @@ export default function BrowseGigs() {
 
       <main className="bg-background min-h-screen">
         {/* Page Header */}
-        <section className="bg-card border-b border-border py-8 px-4">
-          <div className="max-w-7xl mx-auto">
+        <section className="relative bg-card border-b border-border py-10 px-4 overflow-hidden">
+          <div className="absolute inset-0 glow-radial pointer-events-none" />
+          <div className="relative max-w-7xl mx-auto fade-in-up">
+            <span className="inline-flex items-center px-3 py-1 mb-3 bg-primary/8 text-primary text-xs font-semibold uppercase tracking-wider rounded-full live-dot">
+              Updated live
+            </span>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               Browse Gigs
             </h1>
             <p className="text-muted-foreground">
-              {filteredGigs.length} gigs available
+              <span className="text-foreground font-semibold">{filteredGigs.length}</span> gig{filteredGigs.length === 1 ? '' : 's'} available across all campuses
             </p>
           </div>
         </section>
@@ -207,13 +212,9 @@ export default function BrowseGigs() {
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     {paginatedGigs.map((gig, idx) => (
-                      <div
-                        key={gig.id}
-                        className="fade-in-up"
-                        style={{ animationDelay: `${Math.min(idx * 40, 320)}ms` }}
-                      >
+                      <Reveal key={gig.id} delay={Math.min((idx % 6) * 50, 250)}>
                         <GigCard {...gig} />
-                      </div>
+                      </Reveal>
                     ))}
                   </div>
 

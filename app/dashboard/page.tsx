@@ -33,6 +33,7 @@ import {
   type Gig,
   type User,
 } from '@/lib/storage'
+import { Reveal } from '@/components/reveal'
 
 export default function Dashboard() {
   const router = useRouter()
@@ -112,8 +113,12 @@ export default function Dashboard() {
 
       <main className="bg-background min-h-screen">
         {/* Page Header */}
-        <section className="bg-card border-b border-border py-8 px-4">
-          <div className="max-w-7xl mx-auto">
+        <section className="relative bg-card border-b border-border py-10 px-4 overflow-hidden">
+          <div className="absolute inset-0 glow-radial pointer-events-none" />
+          <div className="relative max-w-7xl mx-auto fade-in-up">
+            <span className="inline-flex items-center px-3 py-1 mb-3 bg-primary/8 text-primary text-xs font-semibold uppercase tracking-wider rounded-full">
+              {user.campus}
+            </span>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               Welcome back, {user.name}
             </h1>
@@ -126,9 +131,9 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <StatCard label="Your Gigs" value={stats.totalGigs} icon={FileText} tint="blue" />
-            <StatCard label="Booking Requests" value={stats.totalBookings} icon={Inbox} tint="green" />
-            <StatCard label="Accepted / Completed" value={stats.acceptedBookings} icon={Star} tint="yellow" />
+            <Reveal delay={0}><StatCard label="Your Gigs" value={stats.totalGigs} icon={FileText} tint="blue" /></Reveal>
+            <Reveal delay={80}><StatCard label="Booking Requests" value={stats.totalBookings} icon={Inbox} tint="green" /></Reveal>
+            <Reveal delay={160}><StatCard label="Accepted / Completed" value={stats.acceptedBookings} icon={Star} tint="yellow" /></Reveal>
           </div>
 
           {/* Tabs */}
@@ -163,19 +168,21 @@ export default function Dashboard() {
 
                 {userGigs.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {userGigs.map((gig) => (
-                      <div key={gig.id} className="relative">
-                        <GigCard {...gig} />
-                        <div className="absolute top-4 right-4 flex gap-2">
-                          <button
-                            onClick={() => handleDeleteGig(gig.id)}
-                            className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
-                            title="Delete gig"
-                          >
-                            <Trash2 className="w-4 h-4 text-red-500" />
-                          </button>
+                    {userGigs.map((gig, idx) => (
+                      <Reveal key={gig.id} delay={Math.min(idx * 50, 250)}>
+                        <div className="relative">
+                          <GigCard {...gig} />
+                          <div className="absolute top-4 right-4 flex gap-2">
+                            <button
+                              onClick={() => handleDeleteGig(gig.id)}
+                              className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+                              title="Delete gig"
+                            >
+                              <Trash2 className="w-4 h-4 text-red-500" />
+                            </button>
+                          </div>
                         </div>
-                      </div>
+                      </Reveal>
                     ))}
                   </div>
                 ) : (
@@ -194,15 +201,16 @@ export default function Dashboard() {
                 <h2 className="text-xl font-semibold text-foreground mb-6">Incoming Booking Requests</h2>
                 {incomingBookings.length > 0 ? (
                   <div className="space-y-4">
-                    {incomingBookings.map((booking) => (
-                      <BookingRow
-                        key={booking.id}
-                        booking={booking}
-                        showOwnerActions
-                        onAccept={() => handleBookingStatus(booking.id, 'accepted')}
-                        onDecline={() => handleBookingStatus(booking.id, 'cancelled')}
-                        onComplete={() => handleBookingStatus(booking.id, 'completed')}
-                      />
+                    {incomingBookings.map((booking, idx) => (
+                      <Reveal key={booking.id} delay={Math.min(idx * 60, 240)}>
+                        <BookingRow
+                          booking={booking}
+                          showOwnerActions
+                          onAccept={() => handleBookingStatus(booking.id, 'accepted')}
+                          onDecline={() => handleBookingStatus(booking.id, 'cancelled')}
+                          onComplete={() => handleBookingStatus(booking.id, 'completed')}
+                        />
+                      </Reveal>
                     ))}
                   </div>
                 ) : (
@@ -220,8 +228,10 @@ export default function Dashboard() {
                 <h2 className="text-xl font-semibold text-foreground mb-6">Gigs You&apos;ve Booked</h2>
                 {myBookings.length > 0 ? (
                   <div className="space-y-4">
-                    {myBookings.map((booking) => (
-                      <BookingRow key={booking.id} booking={booking} />
+                    {myBookings.map((booking, idx) => (
+                      <Reveal key={booking.id} delay={Math.min(idx * 60, 240)}>
+                        <BookingRow booking={booking} />
+                      </Reveal>
                     ))}
                   </div>
                 ) : (

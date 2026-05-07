@@ -102,8 +102,9 @@ export default function Signup() {
     <>
       <Navbar isLoggedIn={false} />
 
-      <main className="bg-background min-h-screen flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-5xl">
+      <main className="relative bg-background min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden">
+        <div className="absolute inset-0 glow-radial pointer-events-none" />
+        <div className="relative w-full max-w-5xl fade-in-up">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Left Side - Branding */}
             <div className="hidden md:flex flex-col justify-center">
