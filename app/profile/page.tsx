@@ -15,8 +15,8 @@ import {
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Reveal } from '@/components/reveal'
-import { Camera, CheckCircle, AlertCircle, Trash2 } from 'lucide-react'
-import { getCurrentUser, updateUser, type User } from '@/lib/storage'
+import { Camera, CheckCircle, AlertCircle, Trash2, ShieldAlert } from 'lucide-react'
+import { deleteAccount, getCurrentUser, updateUser, type User } from '@/lib/storage'
 
 const CAMPUSES = ['ZCAS', 'UNZA', 'Copperbelt University', 'Mulungushi University', 'ZAOU', 'Other']
 
@@ -28,10 +28,13 @@ export default function ProfilePage() {
   const [name, setName] = useState('')
   const [campus, setCampus] = useState('')
   const [avatar, setAvatar] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [savedMsg, setSavedMsg] = useState<string | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [deleteConfirm, setDeleteConfirm] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
 
   useEffect(() => {
     const u = getCurrentUser()
@@ -44,6 +47,7 @@ export default function ProfilePage() {
     setName(u.name)
     setCampus(u.campus)
     setAvatar(u.avatar)
+    setPhone(u.phone ?? '')
   }, [router])
 
   if (!authChecked || !user) {
@@ -79,6 +83,12 @@ export default function ProfilePage() {
 
   const handleRemoveAvatar = () => setAvatar('')
 
+  const handleDeleteAccount = () => {
+    if (!user) return
+    deleteAccount(user.id)
+    router.push('/')
+  }
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMsg(null)
@@ -93,6 +103,7 @@ export default function ProfilePage() {
       name: name.trim(),
       campus,
       avatar,
+      phone: phone.trim(),
     }
 
     if (password || confirmPassword) {
@@ -217,6 +228,20 @@ export default function ProfilePage() {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-semibold text-foreground mb-2">Phone number</label>
+                  <Input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+260 9XX XXX XXX"
+                    className="bg-secondary border-border rounded-[8px]"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Shown to students who book your gigs (optional).
+                  </p>
+                </div>
+
+                <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Campus</label>
                   <Select value={campus} onValueChange={setCampus}>
                     <SelectTrigger className="bg-secondary border-border rounded-[8px]">
@@ -261,6 +286,68 @@ export default function ProfilePage() {
                     />
                   </div>
                 </div>
+              </div>
+            </Reveal>
+
+            {/* Danger zone */}
+            <Reveal delay={240}>
+              <div className="bg-red-50/50 rounded-[12px] border border-red-200 p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(220,38,38,0.10)]">
+                <div className="flex items-start gap-3 mb-4">
+                  <ShieldAlert className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h2 className="text-lg font-semibold text-red-900">Delete account</h2>
+                    <p className="text-sm text-red-800/80 mt-1">
+                      Permanently remove your account, your posted gigs, and all your bookings.
+                      This cannot be undone.
+                    </p>
+                  </div>
+                </div>
+
+                {!showDelete ? (
+                  <Button
+                    type="button"
+                    onClick={() => setShowDelete(true)}
+                    variant="outline"
+                    className="border-red-300 text-red-700 hover:bg-red-100 rounded-[8px] gap-2"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                    Delete my account
+                  </Button>
+                ) : (
+                  <div className="space-y-3 bg-white border border-red-200 rounded-[8px] p-4">
+                    <p className="text-sm text-foreground">
+                      To confirm, type <span className="font-mono font-semibold">DELETE</span> below.
+                    </p>
+                    <Input
+                      value={deleteConfirm}
+                      onChange={(e) => setDeleteConfirm(e.target.value)}
+                      placeholder="DELETE"
+                      className="bg-white border-red-200 rounded-[8px]"
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        onClick={handleDeleteAccount}
+                        disabled={deleteConfirm !== 'DELETE'}
+                        className="bg-red-600 text-white hover:bg-red-700 rounded-[8px] gap-2 disabled:opacity-50"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                        Permanently delete
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          setShowDelete(false)
+                          setDeleteConfirm('')
+                        }}
+                        variant="outline"
+                        className="border-border text-foreground hover:bg-secondary rounded-[8px]"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             </Reveal>
 

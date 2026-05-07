@@ -9,6 +9,7 @@ export type User = {
   password: string
   campus: string
   avatar: string
+  phone?: string
   createdAt: number
 }
 
@@ -104,7 +105,7 @@ export function createUser(input: {
 
 export function updateUser(
   id: string,
-  patch: Partial<Pick<User, 'name' | 'campus' | 'avatar' | 'password'>>,
+  patch: Partial<Pick<User, 'name' | 'campus' | 'avatar' | 'password' | 'phone'>>,
 ): User | null {
   const users = getUsers()
   const idx = users.findIndex((u) => u.id === id)
@@ -128,6 +129,23 @@ export function updateUser(
   if (touched) write(KEYS.gigs, nextGigs)
 
   return updated
+}
+
+export function deleteAccount(id: string): void {
+  const users = getUsers().filter((u) => u.id !== id)
+  write(KEYS.users, users)
+
+  // Drop user's gigs and any bookings touching them
+  const gigs = getGigs()
+  const ownedIds = new Set(gigs.filter((g) => g.ownerId === id).map((g) => g.id))
+  write(KEYS.gigs, gigs.filter((g) => g.ownerId !== id))
+  write(
+    KEYS.bookings,
+    getBookings().filter((b) => b.buyerId !== id && !ownedIds.has(b.gigId)),
+  )
+
+  // End session if it was this user
+  if (getSessionUserId() === id) clearSession()
 }
 
 export function verifyLogin(email: string, password: string): User | null {
