@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -121,6 +127,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -128,14 +139,60 @@
 .tilt-card {
   transform-style: preserve-3d;
   transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 280ms ease-out;
+              box-shadow 280ms ease-out,
+              border-color 200ms ease-out;
   will-change: transform;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 2px 6px -2px rgba(15, 23, 42, 0.05);
 }
 .tilt-card:hover {
   transform: perspective(1100px) rotateX(2deg) rotateY(-3deg) translateY(-6px) translateZ(0);
   box-shadow:
-    0 18px 40px -18px rgba(13, 79, 92, 0.25),
-    0 8px 18px -10px rgba(0, 0, 0, 0.08);
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 12px 28px -12px rgba(13, 79, 92, 0.22),
+    0 24px 48px -24px rgba(13, 79, 92, 0.18);
+}
+
+/* Live indicator - tiny pulsing dot for "active" badges */
+.live-dot::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #22c55e;
+  margin-right: 6px;
+  vertical-align: middle;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Premium input focus ring */
+.input-premium:focus-within {
+  box-shadow: 0 0 0 4px rgba(13, 79, 92, 0.10);
+  border-color: var(--primary);
+}
+
+/* Section gradient divider */
+.section-divider {
+  background: linear-gradient(to right, transparent, rgba(13, 79, 92, 0.18), transparent);
+  height: 1px;
+  border: 0;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card, .depth-card, .fade-in-up, .pulse-soft, .float-soft, .live-dot::before {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* Soft glow used behind hero/CTA sections for depth */

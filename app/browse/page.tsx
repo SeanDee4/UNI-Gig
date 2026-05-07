@@ -105,7 +105,7 @@ export default function BrowseGigs() {
                   <label className="text-sm font-semibold text-foreground block mb-2">
                     Search
                   </label>
-                  <div className="relative">
+                  <div className="relative input-premium rounded-[8px] transition-all">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       placeholder="Search gigs..."
@@ -114,7 +114,7 @@ export default function BrowseGigs() {
                         setSearchQuery(e.target.value)
                         setCurrentPage(1)
                       }}
-                      className="pl-10 bg-secondary border-border rounded-[8px]"
+                      className="pl-10 bg-secondary border-border rounded-[8px] focus-visible:ring-0 focus-visible:border-primary"
                     />
                   </div>
                 </div>

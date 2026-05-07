@@ -102,30 +102,51 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-background py-12 md:py-20 px-4 overflow-hidden">
+      <section className="relative bg-background py-16 md:py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 glow-radial pointer-events-none" />
         <div className="relative max-w-4xl mx-auto text-center fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-            Find help. Offer skills. All on campus.
+          <span className="inline-flex items-center px-3 py-1 mb-6 bg-primary/8 text-primary text-xs font-semibold uppercase tracking-wider rounded-full live-dot">
+            Live on ZCAS campus
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-5 text-balance leading-[1.05]">
+            Find help. Offer skills.
+            <br />
+            <span className="text-primary">All on campus.</span>
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 text-balance max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-9 text-balance max-w-2xl mx-auto leading-relaxed">
             UNI-Gig is the student services marketplace built for ZCAS and other Zambian campuses.
             Tutoring, typing, design work, errands — connect with skilled students ready to help.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/browse">
-              <Button className="w-full sm:w-auto bg-primary text-white hover:bg-[#083843] rounded-[8px] px-8 py-3 text-base font-medium">
+              <Button className="w-full sm:w-auto bg-primary text-white hover:bg-[#083843] rounded-[10px] px-8 py-6 text-base font-medium shadow-[0_8px_24px_-12px_rgba(13,79,92,0.5)]">
                 Browse Gigs
               </Button>
             </Link>
             <Link href="/post">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-secondary rounded-[8px] px-8 py-3 text-base font-medium"
+                className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-secondary rounded-[10px] px-8 py-6 text-base font-medium"
               >
                 Post a Gig
               </Button>
             </Link>
+          </div>
+
+          {/* Community proof strip */}
+          <div className="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto">
+            <div>
+              <p className="text-2xl md:text-3xl font-bold text-foreground">200+</p>
+              <p className="text-xs text-muted-foreground mt-1">Active students</p>
+            </div>
+            <div className="border-x border-border">
+              <p className="text-2xl md:text-3xl font-bold text-foreground">6</p>
+              <p className="text-xs text-muted-foreground mt-1">Gig categories</p>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-bold text-foreground">24h</p>
+              <p className="text-xs text-muted-foreground mt-1">Avg. response</p>
+            </div>
           </div>
         </div>
       </section>

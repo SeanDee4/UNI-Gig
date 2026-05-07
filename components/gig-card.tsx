@@ -27,51 +27,44 @@ export function GigCard({
   campus,
 }: GigCardProps) {
   return (
-    <Link href={`/gig/${id}`}>
-      <div className="tilt-card bg-card rounded-[10px] border border-border p-4 hover:border-primary/40 cursor-pointer h-full flex flex-col">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex-1">
-            <h3 className="text-base font-semibold text-foreground line-clamp-2">
-              {title}
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-              {description}
-            </p>
+    <Link href={`/gig/${id}`} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded-[10px]">
+      <div className="tilt-card bg-card rounded-[10px] border border-border p-5 hover:border-primary/40 cursor-pointer h-full flex flex-col">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <span className="inline-flex items-center px-2.5 py-1 bg-primary/8 text-primary text-[11px] font-semibold uppercase tracking-wider rounded-full">
+            {category}
+          </span>
+          <div className="flex items-center gap-1 text-amber-500">
+            <Star className="w-3.5 h-3.5 fill-current" />
+            <span className="text-xs font-semibold text-foreground">{rating.toFixed(1)}</span>
+            <span className="text-[11px] text-muted-foreground">({reviews})</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 mb-3">
-          <span className="inline-block px-2.5 py-1 bg-secondary text-primary text-xs font-medium rounded-[6px]">
-            {category}
-          </span>
-        </div>
+        <h3 className="text-base font-semibold text-foreground line-clamp-2 mb-1.5 leading-snug">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+          {description}
+        </p>
 
-        <div className="flex items-center gap-1 mb-4 mt-auto">
-          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-          <span className="text-sm font-medium text-foreground">{rating.toFixed(1)}</span>
-          <span className="text-xs text-muted-foreground">({reviews})</span>
-        </div>
-
-        <div className="border-t border-border pt-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className="border-t border-border pt-4 mt-auto">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
               {posterAvatar ? (
                 <img
                   src={posterAvatar}
                   alt={posterName}
-                  className="w-8 h-8 rounded-full object-cover"
+                  className="w-9 h-9 rounded-full object-cover ring-2 ring-card shadow-sm flex-shrink-0"
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-secondary text-primary flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-[#083843] text-white flex items-center justify-center text-sm font-semibold flex-shrink-0 shadow-sm">
                   {posterName?.charAt(0).toUpperCase() || '?'}
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">
-                  {posterName}
-                </p>
+                <p className="text-sm font-medium text-foreground truncate">{posterName}</p>
                 {campus && (
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
                     <MapPin className="w-3 h-3" />
                     <span className="truncate">{campus}</span>
                   </div>
@@ -79,7 +72,8 @@ export function GigCard({
               </div>
             </div>
             <div className="text-right flex-shrink-0">
-              <p className="text-lg font-bold text-primary">K{price}</p>
+              <p className="text-[10px] text-muted-foreground font-medium leading-none mb-0.5">FROM</p>
+              <p className="text-lg font-bold text-primary leading-none">K{price}</p>
             </div>
           </div>
         </div>
