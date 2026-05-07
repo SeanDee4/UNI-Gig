@@ -35,12 +35,16 @@ export type Booking = {
   createdAt: number
 }
 
+// Bump SEED_VERSION whenever the seed data changes — the storage layer
+// checks this and re-seeds any browser whose copy is older.
+const SEED_VERSION = '2'
+
 const KEYS = {
   users: 'unigig.users',
   gigs: 'unigig.gigs',
   bookings: 'unigig.bookings',
   session: 'unigig.session',
-  seeded: 'unigig.seeded',
+  seeded: 'unigig.seeded.v' + SEED_VERSION,
 } as const
 
 const isBrowser = () => typeof window !== 'undefined'
@@ -220,6 +224,13 @@ function ensureSeeded(): void {
   if (!isBrowser()) return
   if (window.localStorage.getItem(KEYS.seeded) === '1') return
 
+  // Drop any older seeded marker so new seed wins
+  Object.keys(window.localStorage)
+    .filter((k) => k.startsWith('unigig.seeded.') && k !== KEYS.seeded)
+    .forEach((k) => window.localStorage.removeItem(k))
+  // Also drop the legacy v1 marker name from before we versioned it
+  window.localStorage.removeItem('unigig.seeded')
+
   const seedGigs: Gig[] = [
     {
       id: 'seed-1',
@@ -307,6 +318,9 @@ function ensureSeeded(): void {
     },
   ]
 
-  write(KEYS.gigs, seedGigs)
+  // Preserve any real (non-seed) gigs the user has posted
+  const existing = read<Gig[]>(KEYS.gigs, [])
+  const userGigs = existing.filter((g) => !g.id.startsWith('seed-'))
+  write(KEYS.gigs, [...userGigs, ...seedGigs])
   window.localStorage.setItem(KEYS.seeded, '1')
 }
