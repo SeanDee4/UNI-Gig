@@ -154,6 +154,32 @@
     0 24px 48px -24px rgba(13, 79, 92, 0.18);
 }
 
+/* Shimmer sheen that slides across primary buttons on hover */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 700ms ease;
+  pointer-events: none;
+}
+.btn-sheen:hover::after {
+  left: 130%;
+}
+
 /* Live indicator - tiny pulsing dot for "active" badges */
 .live-dot::before {
   content: '';
