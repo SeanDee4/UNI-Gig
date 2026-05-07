@@ -55,11 +55,17 @@ export function GigCard({
         <div className="border-t border-border pt-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <img
-                src={posterAvatar}
-                alt={posterName}
-                className="w-8 h-8 rounded-full object-cover"
-              />
+              {posterAvatar ? (
+                <img
+                  src={posterAvatar}
+                  alt={posterName}
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-secondary text-primary flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                  {posterName?.charAt(0).toUpperCase() || '?'}
+                </div>
+              )}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-foreground truncate">
                   {posterName}

@@ -31,12 +31,12 @@ export default function Home() {
   const featuredGigs = [
     {
       id: '1',
-      title: 'Biology Tutoring - 3rd Year',
-      description: 'Expert tutoring in cellular biology and genetics for 3rd year students.',
+      title: 'NCC Computing L4 & L5 Tutoring',
+      description: 'One-on-one tutoring for NCC Computing students. Coursework help, exam prep, and project guidance.',
       category: 'Tutoring',
       price: 150,
       posterName: 'Chama M.',
-      posterAvatar: 'https://i.pravatar.cc/150?img=1',
+      posterAvatar: '',
       rating: 4.9,
       reviews: 23,
       campus: 'ZCAS',
@@ -48,7 +48,7 @@ export default function Home() {
       category: 'Typing',
       price: 100,
       posterName: 'Siyanda K.',
-      posterAvatar: 'https://i.pravatar.cc/150?img=2',
+      posterAvatar: '',
       rating: 4.8,
       reviews: 18,
       campus: 'ZCAS',
@@ -60,7 +60,7 @@ export default function Home() {
       category: 'Design',
       price: 250,
       posterName: 'Mbewe N.',
-      posterAvatar: 'https://i.pravatar.cc/150?img=3',
+      posterAvatar: '',
       rating: 5.0,
       reviews: 31,
       campus: 'ZCAS',
@@ -72,7 +72,7 @@ export default function Home() {
       category: 'Laundry',
       price: 75,
       posterName: 'Grace T.',
-      posterAvatar: 'https://i.pravatar.cc/150?img=4',
+      posterAvatar: '',
       rating: 4.7,
       reviews: 45,
       campus: 'UNZA',
@@ -241,10 +241,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/login">
-              <Button
-                variant="outline"
-                className="w-full sm:w-auto border-2 border-white text-white hover:bg-[#083843] rounded-[8px] px-8 py-3 text-base font-medium"
-              >
+              <Button className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100 rounded-[8px] px-8 py-3 text-base font-medium">
                 Log In
               </Button>
             </Link>

@@ -180,11 +180,17 @@ export default function GigDetail() {
                 </h3>
 
                 <div className="text-center mb-6">
-                  <img
-                    src={gig.posterAvatar}
-                    alt={gig.posterName}
-                    className="w-20 h-20 rounded-full object-cover mx-auto mb-3"
-                  />
+                  {gig.posterAvatar ? (
+                    <img
+                      src={gig.posterAvatar}
+                      alt={gig.posterName}
+                      className="w-20 h-20 rounded-full object-cover mx-auto mb-3"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 rounded-full bg-secondary text-primary flex items-center justify-center text-2xl font-bold mx-auto mb-3">
+                      {gig.posterName?.charAt(0).toUpperCase() || '?'}
+                    </div>
+                  )}
                   <h4 className="text-lg font-semibold text-foreground mb-1">
                     {gig.posterName}
                   </h4>
