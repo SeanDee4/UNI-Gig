@@ -7,15 +7,11 @@ interface RevealProps {
   delay?: number
   className?: string
   as?: 'div' | 'section' | 'article'
-  /** Set to true to animate only the first time the element enters view (default: false) */
+  
   once?: boolean
 }
 
-/**
- * Fades + slides its children up into view whenever they enter the viewport.
- * By default re-fires on every entry/exit so scrolling up and down both animate.
- * Honours prefers-reduced-motion.
- */
+
 export function Reveal({
   children,
   delay = 0,

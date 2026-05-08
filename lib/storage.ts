@@ -1,6 +1,4 @@
-// Client-side persistence layer for UNI-Gig.
-// Backed by localStorage so the artefact runs without a backend.
-// All functions are SSR-safe: they no-op (or return defaults) when window is undefined.
+
 
 export type User = {
   id: string
@@ -36,8 +34,7 @@ export type Booking = {
   createdAt: number
 }
 
-// Bump SEED_VERSION whenever the seed data changes — the storage layer
-// checks this and re-seeds any browser whose copy is older.
+
 const SEED_VERSION = '2'
 
 const KEYS = {
@@ -69,7 +66,7 @@ function uid(): string {
   return Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
 }
 
-// ---------- Users ----------
+
 
 export function getUsers(): User[] {
   return read<User[]>(KEYS.users, [])
@@ -114,7 +111,7 @@ export function updateUser(
   users[idx] = updated
   write(KEYS.users, users)
 
-  // Mirror name/avatar onto any gigs this user owns so cards stay in sync
+  
   const gigs = getGigs()
   let touched = false
   const nextGigs = gigs.map((g) => {
@@ -135,7 +132,7 @@ export function deleteAccount(id: string): void {
   const users = getUsers().filter((u) => u.id !== id)
   write(KEYS.users, users)
 
-  // Drop user's gigs and any bookings touching them
+ 
   const gigs = getGigs()
   const ownedIds = new Set(gigs.filter((g) => g.ownerId === id).map((g) => g.id))
   write(KEYS.gigs, gigs.filter((g) => g.ownerId !== id))
@@ -144,7 +141,7 @@ export function deleteAccount(id: string): void {
     getBookings().filter((b) => b.buyerId !== id && !ownedIds.has(b.gigId)),
   )
 
-  // End session if it was this user
+  
   if (getSessionUserId() === id) clearSession()
 }
 
@@ -154,7 +151,7 @@ export function verifyLogin(email: string, password: string): User | null {
   return user ?? null
 }
 
-// ---------- Session ----------
+
 
 export function setSession(userId: string): void {
   write(KEYS.session, userId)
@@ -175,7 +172,7 @@ export function getCurrentUser(): User | null {
   return getUserById(id) ?? null
 }
 
-// ---------- Gigs ----------
+
 
 export function getGigs(): Gig[] {
   ensureSeeded()
@@ -230,7 +227,7 @@ export function deleteGig(id: string, ownerId: string): boolean {
   return true
 }
 
-// ---------- Bookings ----------
+
 
 export function getBookings(): Booking[] {
   return read<Booking[]>(KEYS.bookings, [])
@@ -264,17 +261,17 @@ export function updateBookingStatus(id: string, status: Booking['status']): void
   )
 }
 
-// ---------- Seed data ----------
+
 
 function ensureSeeded(): void {
   if (!isBrowser()) return
   if (window.localStorage.getItem(KEYS.seeded) === '1') return
 
-  // Drop any older seeded marker so new seed wins
+  
   Object.keys(window.localStorage)
     .filter((k) => k.startsWith('unigig.seeded.') && k !== KEYS.seeded)
     .forEach((k) => window.localStorage.removeItem(k))
-  // Also drop the legacy v1 marker name from before we versioned it
+  
   window.localStorage.removeItem('unigig.seeded')
 
   const seedGigs: Gig[] = [
@@ -364,7 +361,7 @@ function ensureSeeded(): void {
     },
   ]
 
-  // Preserve any real (non-seed) gigs the user has posted
+  
   const existing = read<Gig[]>(KEYS.gigs, [])
   const userGigs = existing.filter((g) => !g.id.startsWith('seed-'))
   write(KEYS.gigs, [...userGigs, ...seedGigs])

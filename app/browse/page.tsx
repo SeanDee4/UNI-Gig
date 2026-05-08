@@ -42,7 +42,7 @@ export default function BrowseGigs() {
   ]
 
 
-  // Filter gigs
+  
   let filteredGigs = allGigs
     .filter((gig) => {
       const matchesSearch = gig.title
