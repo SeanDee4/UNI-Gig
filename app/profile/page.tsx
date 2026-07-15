@@ -191,7 +191,7 @@ export default function ProfilePage() {
                         type="button"
                         onClick={handleRemoveAvatar}
                         variant="outline"
-                        className="border-red-200 text-red-600 hover:bg-red-50 rounded-[8px] gap-2"
+                        className="border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-[8px] gap-2"
                       >
                         <Trash2 className="w-4 h-4" />
                         Remove
@@ -290,12 +290,12 @@ export default function ProfilePage() {
 
             {/* Danger zone */}
             <Reveal delay={240}>
-              <div className="bg-red-50/50 rounded-[12px] border border-red-200 p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(220,38,38,0.10)]">
+              <div className="bg-red-50/50 dark:bg-red-950/15 rounded-[12px] border border-red-200 dark:border-red-900/40 p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_2px_8px_-4px_rgba(220,38,38,0.10)]">
                 <div className="flex items-start gap-3 mb-4">
                   <ShieldAlert className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <h2 className="text-lg font-semibold text-red-900">Delete account</h2>
-                    <p className="text-sm text-red-800/80 mt-1">
+                    <p className="text-sm text-red-800 dark:text-red-300/80 mt-1">
                       Permanently remove your account, your posted gigs, and all your bookings.
                       This cannot be undone.
                     </p>
@@ -313,7 +313,7 @@ export default function ProfilePage() {
                     Delete my account
                   </Button>
                 ) : (
-                  <div className="space-y-3 bg-white border border-red-200 rounded-[8px] p-4">
+                  <div className="space-y-3 bg-white dark:bg-[#141414] border border-red-200 dark:border-red-900/40 rounded-[8px] p-4">
                     <p className="text-sm text-foreground">
                       To confirm, type <span className="font-mono font-semibold">DELETE</span> below.
                     </p>
@@ -321,7 +321,7 @@ export default function ProfilePage() {
                       value={deleteConfirm}
                       onChange={(e) => setDeleteConfirm(e.target.value)}
                       placeholder="DELETE"
-                      className="bg-white border-red-200 rounded-[8px]"
+                      className="bg-white dark:bg-[#141414] border-red-200 dark:border-red-900/40 rounded-[8px]"
                     />
                     <div className="flex gap-2">
                       <Button
@@ -351,15 +351,15 @@ export default function ProfilePage() {
             </Reveal>
 
             {errorMsg && (
-              <div className="bg-red-50 border border-red-200 rounded-[8px] p-4 flex gap-3">
+              <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-[8px] p-4 flex gap-3">
                 <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-800">{errorMsg}</p>
+                <p className="text-sm text-red-800 dark:text-red-300">{errorMsg}</p>
               </div>
             )}
             {savedMsg && (
-              <div className="bg-green-50 border border-green-200 rounded-[8px] p-4 flex gap-3">
+              <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-[8px] p-4 flex gap-3">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-green-800">{savedMsg}</p>
+                <p className="text-sm text-green-800 dark:text-green-300">{savedMsg}</p>
               </div>
             )}
 

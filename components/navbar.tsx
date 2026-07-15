@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { LogOut, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { clearSession, getCurrentUser, type User } from '@/lib/storage'
 
 export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {}) {
@@ -59,6 +60,7 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
 
           {/* Auth Buttons / User Menu */}
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             {isLoggedIn ? (
               <>
                 <Link href="/dashboard">
@@ -72,7 +74,7 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
-                  className="group text-muted-foreground hover:bg-red-50 hover:text-red-600 rounded-[8px] gap-2 px-3 transition-colors"
+                  className="group text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40 dark:hover:text-red-400 rounded-[8px] gap-2 px-3 transition-colors"
                   title="Log out"
                 >
                   <LogOut className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -115,10 +117,12 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button + Theme Toggle */}
+          <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground"
+            className="text-foreground"
           >
             {isOpen ? (
               <X className="w-6 h-6" />
@@ -126,6 +130,7 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
               <Menu className="w-6 h-6" />
             )}
           </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -164,7 +169,7 @@ export function Navbar(_props: { isLoggedIn?: boolean; userName?: string } = {})
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
-                  className="w-full justify-start text-red-600 hover:bg-red-50 gap-2"
+                  className="w-full justify-start text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40 gap-2"
                 >
                   <LogOut className="w-4 h-4" />
                   Log out

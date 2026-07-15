@@ -157,9 +157,9 @@ export default function PostGig() {
             {/* Form */}
             <div className="lg:col-span-2">
               {errorMsg && (
-                <div className="bg-red-50 border border-red-200 rounded-[8px] p-4 mb-6 flex gap-3">
+                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-[8px] p-4 mb-6 flex gap-3">
                   <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-800">{errorMsg}</p>
+                  <p className="text-sm text-red-800 dark:text-red-300">{errorMsg}</p>
                 </div>
               )}
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -338,8 +338,8 @@ export default function PostGig() {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Tips Card */}
-              <div className="bg-blue-50 border border-blue-200 rounded-[10px] p-6 sticky top-24">
-                <h3 className="font-semibold text-blue-900 mb-4">
+              <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 rounded-[10px] p-6 sticky top-24">
+                <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-4">
                   Tips for a Great Gig Post
                 </h3>
                 <ul className="space-y-3 text-sm text-blue-800">
@@ -371,14 +371,14 @@ export default function PostGig() {
 
               {/* Info Card */}
               {submitted && (
-                <div className="bg-green-50 border border-green-200 rounded-[10px] p-6 mt-6 animate-pulse">
+                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-[10px] p-6 mt-6 animate-pulse">
                   <div className="flex gap-3 items-start">
                     <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-green-900 mb-1">
                         Gig Posted!
                       </h4>
-                      <p className="text-sm text-green-800">
+                      <p className="text-sm text-green-800 dark:text-green-300">
                         Your gig is now live and students can see it in their search.
                       </p>
                     </div>

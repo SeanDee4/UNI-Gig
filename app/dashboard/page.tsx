@@ -175,7 +175,7 @@ export default function Dashboard() {
                           <div className="absolute top-4 right-4 flex gap-2">
                             <button
                               onClick={() => handleDeleteGig(gig.id)}
-                              className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+                              className="w-8 h-8 bg-white dark:bg-[#1f1f1f] rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
                               title="Delete gig"
                             >
                               <Trash2 className="w-4 h-4 text-red-500" />
@@ -261,7 +261,7 @@ export default function Dashboard() {
                     <Button
                       onClick={handleSignOut}
                       variant="outline"
-                      className="border-red-200 text-red-600 hover:bg-red-50 rounded-[8px]"
+                      className="border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-[8px]"
                     >
                       <LogOut className="w-4 h-4 mr-2" />
                       Sign Out
@@ -291,9 +291,9 @@ function StatCard({
   tint: 'blue' | 'green' | 'yellow'
 }) {
   const tintClasses = {
-    blue: 'bg-blue-50 text-blue-600',
-    green: 'bg-green-50 text-green-600',
-    yellow: 'bg-yellow-50 text-yellow-600',
+    blue: 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400',
+    green: 'bg-green-50 text-green-600 dark:bg-green-950/40 dark:text-green-400',
+    yellow: 'bg-yellow-50 text-yellow-600 dark:bg-yellow-950/40 dark:text-yellow-400',
   }[tint]
   return (
     <div className="depth-card rounded-[10px] border border-border p-6">
@@ -359,10 +359,10 @@ function BookingRow({
   const date = new Date(booking.createdAt).toLocaleDateString('en-GB')
 
   const statusColor = {
-    pending: 'bg-amber-100 text-amber-800',
-    accepted: 'bg-blue-100 text-blue-800',
-    completed: 'bg-green-100 text-green-800',
-    cancelled: 'bg-red-100 text-red-800',
+    pending: 'bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-300',
+    accepted: 'bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300',
+    completed: 'bg-green-100 text-green-800 dark:bg-green-950/40 dark:text-green-300',
+    cancelled: 'bg-red-100 text-red-800 dark:bg-red-950/40 dark:text-red-300',
   }[booking.status]
 
   return (
@@ -399,7 +399,7 @@ function BookingRow({
           <Button
             onClick={onDecline}
             variant="outline"
-            className="border-red-200 text-red-600 hover:bg-red-50 rounded-[8px] text-sm gap-2"
+            className="border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-[8px] text-sm gap-2"
           >
             <XCircle className="w-4 h-4" />
             Decline

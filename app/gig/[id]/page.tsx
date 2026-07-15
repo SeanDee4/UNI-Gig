@@ -209,9 +209,9 @@ export default function GigDetail() {
                 </div>
 
                 {bookingMsg && (
-                  <div className="bg-green-50 border border-green-200 rounded-[8px] p-4 mb-6 flex gap-3">
+                  <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-[8px] p-4 mb-6 flex gap-3">
                     <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-green-800">{bookingMsg}</p>
+                    <p className="text-sm text-green-800 dark:text-green-300">{bookingMsg}</p>
                   </div>
                 )}
 
@@ -223,7 +223,7 @@ export default function GigDetail() {
                     <Button
                       onClick={handleDelete}
                       variant="outline"
-                      className="w-full border-red-200 text-red-700 hover:bg-red-50 rounded-[8px] py-6 mb-3 text-base font-medium gap-2"
+                      className="w-full border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-[8px] py-6 mb-3 text-base font-medium gap-2"
                     >
                       <Trash2 className="w-4 h-4" />
                       Delete Gig

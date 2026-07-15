@@ -94,9 +94,9 @@ export default function Login() {
                 </p>
 
                 {submitted && (
-                  <div className="bg-green-50 border border-green-200 rounded-[8px] p-4 mb-6 flex gap-3">
+                  <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-[8px] p-4 mb-6 flex gap-3">
                     <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <div className="text-sm text-green-800">
+                    <div className="text-sm text-green-800 dark:text-green-300">
                       <p className="font-semibold mb-1">Login Successful!</p>
                       <p>Redirecting to your dashboard...</p>
                     </div>
@@ -104,9 +104,9 @@ export default function Login() {
                 )}
 
                 {errorMsg && (
-                  <div className="bg-red-50 border border-red-200 rounded-[8px] p-4 mb-6 flex gap-3">
+                  <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-[8px] p-4 mb-6 flex gap-3">
                     <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-red-800">{errorMsg}</p>
+                    <p className="text-sm text-red-800 dark:text-red-300">{errorMsg}</p>
                   </div>
                 )}
 
@@ -200,9 +200,9 @@ export default function Login() {
               </div>
 
               {/* Security Info */}
-              <div className="bg-blue-50 border border-blue-200 rounded-[8px] p-4 mt-6 flex gap-3 text-sm">
+              <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 rounded-[8px] p-4 mt-6 flex gap-3 text-sm">
                 <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <p className="text-blue-900">
+                <p className="text-blue-900 dark:text-blue-300">
                   We never share your information. Your data is secure and private.
                 </p>
               </div>
